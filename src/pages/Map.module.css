@@ -1,3 +1,4 @@
 .slider {
   margin-top: auto;
+  pointer-events: all;
 }

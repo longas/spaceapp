@@ -4,33 +4,49 @@ import { tween } from 'popmotion';
 import { easeInOut } from '@popmotion/easing';
 
 class CameraController {
+  root: HTMLDivElement;
   camera: THREE.Camera;
-  //controls: OrbitControls;
+  controls: OrbitControls | null = null;
 
   constructor(camera: Camera, root: HTMLDivElement) {
     this.camera = camera;
-    //this.controls = this.createCameraControls(camera, root);
-    this.toggleCameraControls(false);
+    this.root = root;
+  }
+
+  changeToOrbit() {
+    this.controls = this.createCameraControls(this.camera, this.root);
   }
 
   centerCamera() {
     const startPos = this.camera.position.clone();
 
-    tween({
+    const anim = tween({
       from: startPos.toArray(),
       to: [0, 0, 8],
       duration: 500,
-      ease: easeInOut
+      ease: easeInOut,
     }).start((v: [number, number, number]) => {
       this.camera.position.set(...v);
     });
+
+    const interval = setInterval(() => {
+      // @ts-ignore
+      const progress = anim.getProgress();
+
+      if (progress) {
+        setTimeout(() => {
+          this.changeToOrbit();
+        }, 500);
+        clearInterval(interval);
+      }
+    }, 100);
   }
 
   createCameraControls(camera: Camera, root: HTMLDivElement) {
     const controls = new OrbitControls(camera, root);
-    controls.minDistance = 1.5;
+    controls.minDistance = 3.5;
     controls.maxDistance = 8;
-    controls.autoRotate = false;
+    controls.autoRotate = true;
     return controls;
   }
 
