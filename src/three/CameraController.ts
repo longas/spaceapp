@@ -1,4 +1,4 @@
-import { Camera, Mesh } from "three";
+import { Camera, Mesh, Math } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { tween } from "popmotion";
 import { easeInOut } from "@popmotion/easing";
@@ -19,10 +19,22 @@ class CameraController {
   }
 
   centerCamera(earth: Mesh) {
-    const startPos = this.camera.position.clone();
+    const startEarthRotation = earth.rotation.clone();
 
     tween({
-      from: startPos.toArray(),
+      from: startEarthRotation.z,
+      to: startEarthRotation.z + Math.degToRad(50),
+      duration: 500,
+      ease: easeInOut
+    }).start({
+      update: (rotation: number) => (earth.rotation.z = rotation),
+      complete: () => this.changeToOrbit()
+    });
+
+    const startCameraPos = this.camera.position.clone();
+
+    tween({
+      from: startCameraPos.toArray(),
       to: [0, 0, 8],
       duration: 500,
       ease: easeInOut
@@ -38,9 +50,11 @@ class CameraController {
 
   createCameraControls(camera: Camera, root: HTMLDivElement) {
     const controls = new OrbitControls(camera, root);
+    controls.rotateSpeed = 0.3;
     controls.minDistance = 2.5;
     controls.maxDistance = 8;
     controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
     controls.enablePan = false;
 
     const onInteracted = () => {

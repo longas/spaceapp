@@ -26,25 +26,26 @@ class ThreeController {
 
   earthAutoRotating = true;
 
-  constructor(root: HTMLDivElement) {
+  constructor(root: HTMLDivElement, loadedCb: Function) {
     this.root = root;
     this.camera = this.createCamera();
     this.cameraController = new CameraController(this.camera, this.root);
     this.renderer = this.createRenderer();
     this.root.appendChild(this.renderer.domElement);
 
-    this.initEarth();
+    this.initEarth(loadedCb);
     this.animate();
 
     window.addEventListener("resize", this.handleWindowResize);
   }
 
-  initEarth() {
+  initEarth(loadedCb: Function) {
     const albedoMap = this.textureLoader.load(earthAlbedoMap);
     const altitudeMap = this.textureLoader.load(earthAltitudeMap);
     this.fbxLoader.load(earthFbx, fbx => {
       this.earth.init(fbx, albedoMap, altitudeMap);
       this.scene.add(fbx);
+      loadedCb();
     });
   }
 

@@ -1,0 +1,36 @@
+.loading {
+  margin: 10px 0 0;
+  font-family: "Big Shoulders Text", cursive;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 100;
+  text-align: center;
+}
+
+.globe {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.globe svg {
+  animation: rotation 5s linear 0s infinite;
+}
+
+.globe svg path {
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+@keyframes rotation {
+  from {
+    transform: translateX(0);
+  }
+
+  from {
+    transform: translateX(-50%);
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { MemoryRouter, Switch, Route } from "react-router-dom";
+import Loading from "./pages/Loading";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
 import ThreeController from "./three";
@@ -12,10 +13,13 @@ const App: React.FC = () => {
   const threeCtrl = useRef<ThreeController>();
   const threeRoot = useRef<HTMLDivElement>(null);
   const [inMap, setInMap] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (threeRoot.current) {
-      threeCtrl.current = new ThreeController(threeRoot.current);
+      threeCtrl.current = new ThreeController(threeRoot.current, () => {
+        setLoaded(true);
+      });
     }
   }, []);
 
@@ -47,7 +51,7 @@ const App: React.FC = () => {
           <MemoryRouter>
             <Switch>
               <Route exact path="/">
-                <Home centerEarth={transitionToMap} />
+                {loaded ? <Home centerEarth={transitionToMap} /> : <Loading />}
               </Route>
               <Route path="/map">
                 <Map
