@@ -1,10 +1,14 @@
 .threeRoot {
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .wrapper {
   position: absolute;
+  z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
@@ -14,14 +18,16 @@
   padding: 25px;
 }
 
-.header {
-}
-
 .header h1 {
-  font-family: 'Big Shoulders Text', cursive;
+  font-family: "Big Shoulders Text", cursive;
   text-transform: uppercase;
   font-size: 2rem;
   font-weight: 100;
+  margin: 0;
+}
+
+.header h1 .water {
+  color: var(--blue);
 }
 
 .content {
@@ -40,10 +46,27 @@
   justify-content: flex-end;
 }
 
-.footer svg, .footer img{
-  height: 50px;
+.footer svg,
+.footer img {
+  height: 45px;
+  pointer-events: all;
 }
 
 .uparrow {
   margin-right: 20px;
+}
+
+.spaceapps {
+  margin-right: 20px;
+}
+
+@media (max-width: 576px) {
+  .footer {
+    justify-content: center;
+  }
+
+  .footer svg,
+  .footer img {
+    height: 30px;
+  }
 }

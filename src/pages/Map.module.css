@@ -1,4 +1,84 @@
-.slider {
+.controls {
   margin-top: auto;
   pointer-events: all;
+}
+
+@media (max-width: 576px) {
+  .controls {
+    padding-bottom: 25px;
+  }
+}
+
+.seaLevelLabel {
+  display: block;
+  margin: 0 0 15px;
+}
+
+.autoRotationLabel {
+  display: inline-block;
+  margin: 20px 10px 0 0;
+}
+
+.autoRotation {
+  transform: scale(1.5);
+}
+
+.seaSlider {
+  display: block;
+  -webkit-appearance: none;
+  width: 200px;
+  border-radius: 4px;
+}
+
+.seaSlider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: var(--grey);
+  border: none;
+  border-radius: 4px;
+}
+
+.seaSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--blue);
+  margin-top: -7px;
+}
+
+.seaSlider:focus {
+  outline: none;
+}
+
+.seaSlider:focus::-webkit-slider-runnable-track {
+  background: var(--grey);
+}
+
+.seaSlider::-moz-range-track {
+  width: 200px;
+  height: 6px;
+  background: var(--grey);
+  border: none;
+  border-radius: 4px;
+}
+
+.seaSlider::-moz-range-thumb {
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--blue);
+  margin-top: -7px;
+}
+
+/*hide the outline behind the border*/
+.seaSlider:-moz-focusring {
+  outline: 1px solid var(--grey);
+  outline-offset: -1px;
+}
+
+.seaSlider:focus::-moz-range-track {
+  background: var(--grey);
 }
