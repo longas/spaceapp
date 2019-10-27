@@ -7,9 +7,9 @@ class Earth {
     albedoMap.wrapS = albedoMap.wrapT = RepeatWrapping;
 
     const uniforms = {
-      sealevel: { type: 'float', value: 0 },
-      texture1: { type: 't', value: albedoMap },
-      texture2: { type: 't', value: altitudeMap }
+      sealevel: { type: "float", value: 0 },
+      texture1: { type: "t", value: albedoMap },
+      texture2: { type: "t", value: altitudeMap }
     };
 
     const material = new ShaderMaterial({
