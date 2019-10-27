@@ -1,5 +1,5 @@
 .homePage h1 {
-  font-family: "Big Shoulders Text", cursive;
+  font-family: "Big Shoulders Text", sans-serif;
   text-transform: uppercase;
   font-size: 5rem;
   font-weight: 100;
@@ -22,7 +22,7 @@
   border: 2px solid var(--blue);
   border-radius: 3px;
   background: transparent;
-  font-family: "Big Shoulders Text", cursive;
+  font-family: "Big Shoulders Text", sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
   text-transform: uppercase;
