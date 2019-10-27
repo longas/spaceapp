@@ -3,11 +3,13 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { tween } from "popmotion";
 import { easeInOut } from "@popmotion/easing";
 
+const maxDistance = 32;
+
 class CameraController {
   root: HTMLDivElement;
   camera: Camera;
   controls: OrbitControls | null = null;
-  mouseDownCb: Function = () => {};
+  mouseDownCb: Function = () => { };
 
   constructor(camera: Camera, root: HTMLDivElement) {
     this.camera = camera;
@@ -35,7 +37,7 @@ class CameraController {
 
     tween({
       from: startCameraPos.toArray(),
-      to: [0, 0, 8],
+      to: [0, 0, maxDistance],
       duration: 500,
       ease: easeInOut
     }).start({
@@ -51,8 +53,8 @@ class CameraController {
   createCameraControls(camera: Camera, root: HTMLDivElement) {
     const controls = new OrbitControls(camera, root);
     controls.rotateSpeed = 0.3;
-    controls.minDistance = 2.5;
-    controls.maxDistance = 8;
+    controls.minDistance = 10;
+    controls.maxDistance = maxDistance;
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5;
     controls.enablePan = false;
