@@ -64,12 +64,12 @@ class ThreeController {
 
   createCamera() {
     const camera = new PerspectiveCamera(
-      20,
+      5,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    camera.position.set(-0.75, 0.3, 5);
+    camera.position.set(-0.75, 0.3, 20);
     return camera;
   }
 
